@@ -1,3 +1,4 @@
+import { MoviesService } from '../movies.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,10 +7,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./popular-movies.component.css']
 })
 export class PopularMoviesComponent implements OnInit {
+  popularList: Array<Object>;
+  
+  constructor(private movieServ: MoviesService) { }
 
-  constructor() { }
-
+  getPopular(): void{
+    //this.movieServ.getPopularMovies().subscribe(res => this.popularList = res.results;)
+    console.log(this.movieServ.getPopularMovies().subscribe());
+  }
   ngOnInit() {
+      this.getPopular();    
   }
 
 }
