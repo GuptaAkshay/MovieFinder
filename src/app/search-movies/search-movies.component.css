@@ -1,0 +1,9 @@
+@import '../../assets/css/bootstrap.min.css';
+@import '../../assets/css/style.css';
+@import '../../assets/css/jumbotron.css';
+
+.searchbar{
+	display:block;
+	margin-left:10%;
+	width: 80%;
+}
