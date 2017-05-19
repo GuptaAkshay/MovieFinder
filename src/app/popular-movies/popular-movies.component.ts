@@ -1,5 +1,6 @@
 import { MoviesService } from '../movies.service';
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-popular-movies',
@@ -7,16 +8,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./popular-movies.component.css']
 })
 export class PopularMoviesComponent implements OnInit {
-  popularList: Array<Object>;
+  popular_list: Observable<Object>;
+  genres : Observable<Object>;
   
   constructor(private movieServ: MoviesService) { }
 
   getPopular(): void{
-    //this.movieServ.getPopularMovies().subscribe(res => this.popularList = res.results;)
-    console.log(this.movieServ.getPopularMovies().subscribe());
+    this.movieServ.getPopularMovies().subscribe(res => {
+     this.popular_list = res.results;
+     //console.log(this.popular_list);
+    });
   }
   ngOnInit() {
-      this.getPopular();    
+      this.getPopular();
   }
 
 }
