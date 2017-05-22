@@ -1,7 +1,8 @@
+import { AppRoutingModule } from './app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpModule, JsonpModule } from '@angular/http';
+import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { MovieDisplayComponent } from './movie-display/movie-display.component';
@@ -26,9 +27,9 @@ import { TopRatedMoviesComponent } from './top-rated-movies/top-rated-movies.com
     BrowserModule,
     FormsModule,
     HttpModule,
-    JsonpModule
+    AppRoutingModule
   ],
-  providers: [MoviesService],
+  providers: [ MoviesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
