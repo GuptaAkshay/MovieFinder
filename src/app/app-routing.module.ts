@@ -6,6 +6,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { MovieDetailComponent } from './movie-detail/movie-detail.component';
 import { MovieDisplayComponent } from './movie-display/movie-display.component';
+import { PageNotFoundComponent } from './not-found.component';
 
 const routes: Routes = [
   {
@@ -25,6 +26,10 @@ const routes: Routes = [
     redirectTo: '/home',
     pathMatch: 'full'
   },
+  {
+  	path:'**',
+  	component: PageNotFoundComponent
+  }
 ]
 
 @NgModule({

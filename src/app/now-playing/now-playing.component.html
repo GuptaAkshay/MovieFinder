@@ -1,9 +1,9 @@
 <div class="panel panel-primary">
-			<div class="panel-heading">Now Playing <span class="pull-right badge"><a>View More</a></span></div>
+			<div class="panel-heading">{{panetitle}} <button class="btn btn-default btn-xs pull-right" (click)= "displayMovies()">View More</button></div>
 			
 				<div class="panel-body">
 					<div class="row">
-					  <div class="col-xs-6 col-md-3" *ngFor="let now of now_playing | slice:0:4">					  
+					  <div class="col-xs-4 col-md-3" *ngFor="let now of now_playing | slice:0:4">					  
 						<div class="thumbnail">
 						  <img src="https://image.tmdb.org/t/p/w300/{{now.poster_path}}" >
 						  <div class="caption">
