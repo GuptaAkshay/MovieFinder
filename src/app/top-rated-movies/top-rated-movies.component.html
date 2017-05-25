@@ -9,7 +9,7 @@
 						  <div class="caption">
 							<h3>{{top_rated.title}}</h3>							
 							<p><span class="badge badge-primary pull-right">Vote {{top_rated.vote_count}} <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span></span></p>							
-							<p><a href="#" class="btn btn-default" role="button">View Details</a></p>
+							<p><a  class="btn btn-default" role="button" (click)="gotoDetail(top_rated.id)">View Details</a></p>
 						  </div>
 						</div>
 					  </div>					  					  					  				

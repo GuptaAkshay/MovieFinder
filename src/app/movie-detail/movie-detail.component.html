@@ -1,25 +1,62 @@
-<div class="panel panel-primary">	
-	<div class="panel-heading">{{pagetitle}}</div>
-
-	<div class="panel-body">
-		<div class="row">
-			<div class="col-md-3" *ngFor="let movie of movieDetailList">
-				<div class="thumbnail">
-					<img src="https://image.tmdb.org/t/p/w300/{{movie.poster_path}}">
-					<div class="caption">
-						<h3>{{movie.title}}</h3>
-						<p>
-							<span class="badge badge-primary pull-right">{{movie.vote_average}}
-								<span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-							</span>
-						</p>
-						<p>
-							<a href="#" class="btn btn-default" role="button">View
-								Details</a>
-						</p>
+<div class="panel panel-primary">
+	<div *ngIf="pageFlag; else elseBlock ">
+		<div class="panel-heading">{{pagetitle}}</div>
+		<div class="panel-body">
+			<div class="row">
+				<div class="col-md-4" *ngFor="let mov of movieDetailList">
+					<div class="thumbnail">
+						<img src="https://image.tmdb.org/t/p/w300/{{mov.poster_path}}">
+						<div class="caption">
+							<h3>{{mov.title}}</h3>
+							<p>
+								<span class="badge badge-primary pull-right">{{mov.vote_average}}
+									<span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+								</span>
+							</p>
+							<p>
+								<a class="btn btn-default" role="button" (click)="gotoDetail(mov.id)">View
+									Details</a>
+							</p>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+	<ng-template #elseBlock>
+	<div class="panel-heading">{{pagetitle}}</div>
+	<div class="panel-body">
+		<div class="row">
+			<div class="col-md-4 poster center-block">
+				<img src="https://image.tmdb.org/t/p/w300/{{movie?.poster_path}}" class="img-rounded"/>
+			</div>
+			<div class="col-md-7">
+				<div class="well  well-sm">
+					<h3>{{movie?.title}} <small>({{movie?.release_date| date}})</small><span class="badge badge-primary pull-right">{{movie?.vote_average}} <span class="glyphicon glyphicon-star" aria-hidden="true"></span></span></h3>
+				</div>
+				<p class="text-muted"> {{movie?.overview}}</p>
+				<p>
+					<label>Production Companies: </label>
+					<span *ngFor="let company of movie?.production_companies; let isLast=last"> {{company.name}}{{isLast ? '' : ','}}</span>
+				</p>
+				<p>
+					<label>Genre: </label>
+					<span *ngFor="let genre of movie?.genres; let isLast=last"> {{genre.name}}{{isLast ? '' : ','}}</span>
+				</p>
+				<p>
+					<label>Revenue: </label>
+					<span> {{movie?.revenue | currency:'INR'}}</span>
+				</p>
+				<p>
+					<label>Cast: </label>
+					<span *ngFor="let c of cast | slice:0:5; let isLast=last">{{c.name}}{{isLast ? '' : ','}}</span>
+				</p>
+				<p>
+					<label>Others: </label>
+					<span><a href="http://www.imdb.com/title/{{movie?.imdb_id}}" alt="Imdb Link" target="_blank">IMDB Link</a></span>, <span><a href="{{movie?.homepage}}" atl="Homepage">Website</a></span>
+				</p>
+			</div>
+		</div>
+	</div>
+	</ng-template>
 </div>

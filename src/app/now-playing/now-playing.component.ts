@@ -4,34 +4,41 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
 @Component({
-	selector: 'app-now-playing',
-	templateUrl: './now-playing.component.html',
-	styleUrls: ['./now-playing.component.css']
+  selector: 'app-now-playing',
+  templateUrl: './now-playing.component.html',
+  styleUrls: ['./now-playing.component.css']
 })
 export class NowPlayingComponent implements OnInit {
-	
-	panetitle: string
-	now_playing: Observable<Object>;
 
-	constructor(private movie_serv: MoviesService, private router:Router) {
+  panetitle: string
+  now_playing: Observable<Object>;
+  //selectedMovie : Object;
 
-		this.panetitle = "Now Playing";
-    }
+  constructor(private movie_serv: MoviesService, private router: Router) {
 
-	getNowPlaying(): void {
-		this.movie_serv.getNowPlayingMovies().subscribe(res => {
-			this.now_playing = res.results;
-		});
-	}
+    this.panetitle = "Now Playing";
+  }
 
-	ngOnInit() {
-		this.getNowPlaying();
-	}
+  getNowPlaying(): void {
+    this.movie_serv.getNowPlayingMovies().subscribe(res => {
+      this.now_playing = res.results;
+    });
+  }
 
-	displayMovies(): void{
-		this.movie_serv.displayMoviesService(this.now_playing, this.panetitle);
-		this.router.navigate(["/detail"]);
-	}
+  ngOnInit() {
+    this.getNowPlaying();
+  }
 
+  displayMovies(): void {
+    this.movie_serv.displayMoviesService(this.now_playing, this.panetitle);
+    this.router.navigate(["/detail"]);
+  }
 
+  gotoDetail(movie_id: number): void {
+
+    //console.log(movie_id);
+    //this.router.navigate(['/detail'], {queryParams : {id: movie_id}});
+    this.router.navigate(['/detail', movie_id]);
+
+  }
 }

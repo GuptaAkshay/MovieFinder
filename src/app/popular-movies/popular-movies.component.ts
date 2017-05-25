@@ -33,4 +33,12 @@ export class PopularMoviesComponent implements OnInit {
 		this.movieServ.displayMoviesService(this.popular_list, this.panetitle);
 		this.router.navigate(["/detail"]);
 	}
+
+	gotoDetail(movie_id: number) : void{
+		
+		//console.log(movie_id);
+		//this.router.navigate(['/detail'], {queryParams : {id: movie_id}});
+		this.router.navigate(['/detail', movie_id]);
+			
+	}
 }

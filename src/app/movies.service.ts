@@ -14,6 +14,28 @@ export class MoviesService {
 		this.apikey = 'fb7dacf5ffdbcb585f46d84f9a16c19c';		
 	}
 
+	getMovie(movie_id){
+		let uri = 'https://api.themoviedb.org/3/movie/'+movie_id;		
+		let parameters = {
+			api_key: this.apikey
+		}
+		
+		//https://api.themoviedb.org/3/movie/283995?api_key=fb7dacf5ffdbcb585f46d84f9a16c19c&language=en-US
+		return this.http.get(uri, { params: parameters })
+			.map(resp => resp.json()); 
+	}
+	
+	getCastForMovie(movie_id){
+		let uri = 'https://api.themoviedb.org/3/movie/'+movie_id+'/credits';		
+		let parameters = {
+			api_key: this.apikey
+		}
+		
+		//https://api.themoviedb.org/3/movie/283995/credits?api_key=fb7dacf5ffdbcb585f46d84f9a16c19c
+		return this.http.get(uri, { params: parameters })
+			.map(resp => resp.json());
+	}
+	
 	getPopularMovies() {
 		let uri = 'https://api.themoviedb.org/3/discover/movie';
 
@@ -66,6 +88,8 @@ export class MoviesService {
 		this.movieList = movList;	
 		//console.log("displayMoviesService",this.movieList);
 	}
+	
+	
 	
 	getMoviesService(){
 		
